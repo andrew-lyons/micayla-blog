@@ -14,6 +14,8 @@
           and WordPress design created by Kelly Brito. It's perfect for minimal and 
           feminine brands.
         </p>
+
+        <a>See the Program</a>
       </div>
     </div>
 
@@ -38,6 +40,8 @@ export default defineComponent({
     font-family: "Montserrat", Sans-serif;
     font-size: 52px;
     font-weight: 200;
+    margin: 20px 0;
+    letter-spacing: 2px;
   }
 
   p {
@@ -50,29 +54,52 @@ export default defineComponent({
     letter-spacing: 2px;
   }
 
+  a {
+    font-family: "Montserrat", Sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    fill: #FFFFFF;
+    color: #FFFFFF;
+    background-color: #E2CECC;
+    border-radius: 0px 0px 0px 0px;
+    padding: 25px 50px;
+  }
+
   .homepage {
+    display: flex;
+
     &-hero {
       display: flex;
+      justify-content: center;
       align-items: center;
       padding: 0 80px;
 
       &-image {
-        width: 53.47%;
+        width: 44%;
         transform: scaleX(-1);
 
         img {
           width: 100%;
           height: auto;
+          transform: scale(1.3);
         }
       }
       &-text {
-        width: 46.53%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 44%;
+        z-index: 1;
+        margin-bottom: 50px;
 
         &-divider {
           display: flex;
           text-align: center;
           padding-top: 15px;
           padding-bottom: 15px;
+          width: 100%;
   
           span {
             width: 10%;

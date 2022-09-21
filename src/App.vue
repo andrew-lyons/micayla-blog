@@ -30,6 +30,8 @@ body {
 }
 
 header {
+  margin-bottom: 175px;
+
   h1 {
     font-size: 60px;
     font-weight: 100;
