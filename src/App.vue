@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link>
-    <router-link to="/about">Blog</router-link>
+    <router-link to="/about">About</router-link>
+    <router-link to="/blog">Blog</router-link>
     <router-link to="/store">Store</router-link>
   </nav>
 
@@ -36,8 +37,9 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 </style>
 
 <style lang="scss">
@@ -92,6 +94,10 @@ nav {
     font-size: 12px;
     padding: 20px;
     text-decoration: none;
+
+    &.router-link-exact-active {
+      border-bottom: 1px solid var(--primary);
+    }
   }
 }
 
@@ -108,6 +114,7 @@ header {
     line-height: 2;
     margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
+    cursor: default;
 
     @media screen and (min-width: 1441px) {
       font-size: 103px;
