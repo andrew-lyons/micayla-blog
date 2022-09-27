@@ -2,19 +2,19 @@
     <div class="blog">
         <div class="blog-posts">
             <div class="blog-posts-article">
-                <a class="blog-posts-article-title">Lorem Ipsum Title</a>
+                <a href="/blog/32" class="blog-posts-article-title">Lorem Ipsum Title</a>
 
                 <a class="blog-posts-article-meta">September 17, 2022</a>
                 <a class="blog-posts-article-meta">Leave a comment</a>
 
-                <a><img class="blog-posts-article-featured" src="../assets/marigold_bg.jpg" alt=""></a>
+                <a href="/blog/32"><img class="blog-posts-article-featured" src="../assets/marigold_bg.jpg" alt=""></a>
 
                 <p class="blog-posts-article-blurb">
                     Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment. Party we years to order allow asked of. We so opinion friends me message as delight. Whole front do of plate heard
                 </p>
 
                 <div class="blog-posts-article-links">
-                    <a href="" class="blog-posts-article-links-href">
+                    <a href="/blog/32" class="blog-posts-article-links-href">
                         Read more
                     </a>
 
@@ -111,7 +111,7 @@
   import { defineComponent } from 'vue';
   
   export default defineComponent({
-    name: 'HomeView',
+    name: 'BlogView',
     components: {
     },
   });
@@ -169,6 +169,7 @@
                 width: 100%;
                 opacity: 1;
                 transition: opacity 0.5s;
+                text-decoration: none;
 
                 &:hover {
                     opacity: 0.5;

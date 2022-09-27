@@ -72,6 +72,15 @@ body {
   overflow: hidden;
 }
 
+main {
+  display: flex;
+  width: var(--width);
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
 nav {
   position: fixed;
   width: 100%;

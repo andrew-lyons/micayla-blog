@@ -28,14 +28,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .home {
-    main {
-      display: flex;
-      width: var(--width);
-      max-width: 1140px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-    }
-  }
+
 </style>
