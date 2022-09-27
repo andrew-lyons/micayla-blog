@@ -2,6 +2,33 @@
     <main>
         <div class="store-hero">
             <h2>Marigold Project Store?</h2>
+            <p>Perhaps here we explain what the deal is and why there are occasionally some items here.</p>
+        </div>
+
+        <div class="store-products">
+            <div class="store-products-item">
+                <a><img src="../assets/logo.png" alt=""></a>
+                <a><h3>Product Name</h3></a>
+                <a><p>Product description goes here. This is an ornament which you will love blah blah.</p></a>
+            </div>
+
+            <div class="store-products-item">
+                <a><img src="../assets/logo.png" alt=""></a>
+                <a><h3>Product Name</h3></a>
+                <a><p>Product description goes here. This is an ornament which you will love blah blah.</p></a>
+            </div>
+
+            <div class="store-products-item">
+                <a><img src="../assets/logo.png" alt=""></a>
+                <a><h3>Product Name</h3></a>
+                <a><p>Product description goes here. This is an ornament which you will love blah blah.</p></a>
+            </div>
+
+            <div class="store-products-item">
+                <a><img src="../assets/logo.png" alt=""></a>
+                <a><h3>Product Name</h3></a>
+                <a><p>Product description goes here. This is an ornament which you will love blah blah.</p></a>
+            </div>
         </div>
     </main>
 </template>
@@ -20,42 +47,16 @@ export default defineComponent({
 main {
     margin-top: 24px;
     margin-bottom: 100px;
+    flex-wrap: wrap;
 
     .store {
         &-hero {
             position: relative;
             display: flex;
-            min-height: 850px;
-            width: 100%;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-
-            &::before {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: -25vw;
-                right: -25vw;
-                width: 150vw;
-                content: '';
-                background-color: var(--white);
-                z-index: 1;
-            }
-
-            &::after {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: -25vw;
-                right: -25vw;
-                width: 150vw;
-                content: '';
-                background-image: url('https://jane.brandingmypurpose.com/wp-content/uploads/2022/06/pexels-jess-bailey-designs-1167051.jpeg');
-                background-repeat: no-repeat;
-                background-size: cover;
-                opacity: 0.8;
-                z-index: 2;
-            }
+            width: 100%;
 
             h2 {
                 width: 100%;
@@ -63,6 +64,34 @@ main {
                 line-height: 64px;
                 font-weight: 200;
                 z-index: 3;
+                margin-bottom: 0;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 400;
+                letter-spacing: 2px;
+            }
+        }
+
+        &-products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 50px;
+            width: 100%;
+
+            &-item {
+                padding: 20px;
+                background-color: var(--white);
+                width: 28%;
+
+                img {
+                    width: 13.88vw;
+                    height: 13.88vw;
+                    object-fit: cover;
+                }
             }
         }
     }
