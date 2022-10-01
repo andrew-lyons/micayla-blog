@@ -24,18 +24,34 @@ const routes: Array<RouteRecordRaw> = [
   { 
     path: '/blog/:id',
     name: 'blogpost',
-    component: () => import('../views/BlogPostView.vue') 
+    component: () => import('../views/BlogPostView.vue'),
+    props: true
   },
-  {
-    path: '/store',
-    name: 'store',
-    component: () => import('../views/StoreView.vue')
+  { 
+    path: '/blog/categories/:category',
+    name: 'blogcategory',
+    component: () => import('../views/BlogFilterView.vue'),
+    props: true
+  },
+  { 
+    path: '/blog/date/:category',
+    name: 'blogdate',
+    component: () => import('../views/BlogFilterView.vue'),
+    props: true
   }
-]
+  // {
+  //   path: '/store',
+  //   name: 'store',
+  //   component: () => import('../views/StoreView.vue')
+  // }
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior() {
+    document.getElementById('app')!.scrollIntoView();
+  }
 })
 
 export default router

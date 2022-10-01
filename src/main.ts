@@ -9,7 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faEnvelope, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
@@ -17,10 +17,13 @@ import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 library.add(
     faEnvelope,
     faFacebook,
-    faInstagram
+    faInstagram,
+    faComment,
+    faThumbsUp
 );
 
 createApp(App)
 .use(router)
+.provide('wp', 'https://public-api.wordpress.com/rest/v1.1/sites/micaylalyons.wordpress.com')
 .component('font-awesome-icon', FontAwesomeIcon)
 .mount('#app')

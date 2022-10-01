@@ -17,10 +17,10 @@
       <div class="homepage-hero-text">
         <div class="homepage-hero-text-divider"><span></span></div>
   
-        <h1>hello and welcome!</h1>
+        <h1>Hello and welcome!</h1>
   
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend a lorem eu commodo. Integer non turpis nibh. Praesent semper ligula at tellus finibus bibendum vitae at eros.
+          Thank you for being here to contribute to the mission of raising awareness and increasing advocacy for perinatal loss. If you are here because you or a loved one have experienced the devastation of perinatal loss, I am so deeply sorry. We hope that you find solace, the holding of space, and resolution on this site.
         </p>
       </div>
     </div>
@@ -141,11 +141,15 @@ export default defineComponent({
           }
   
           &-divider {
-            display: flex;
+            display: none;
             text-align: center;
             padding-top: 15px;
             padding-bottom: 15px;
             width: 100%;
+
+            @media screen and (max-width: 768px) {
+              display: flex;
+            }
     
             span {
               width: 10%;

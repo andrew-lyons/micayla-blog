@@ -1,11 +1,9 @@
 <template>
     <main>
         <div class="side-text">
-            <h3>Lorem Ipsum</h3>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae gravida libero. Quisque cursus pretium ex vitae tempor <b>nam in lorem congue, pretium augue pellentesque</b> !</p>
+            <p>Thank you for being here to contribute to the mission of raising awareness and increasing advocacy for perinatal loss. If you are here because you or a loved one have experienced the devastation of perinatal loss, I am so deeply sorry. We hope that you find solace, the holding of space, and resolution on this site.</p>
        
-            <button>Go to blog</button>
+            <a href="/blog">Go to blog</a>
         </div>
 
         <div class="side-image">
@@ -45,6 +43,9 @@ export default defineComponent({
         }
 
         .side-text {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             width: 35%;
             padding: 100px;
 
@@ -77,7 +78,7 @@ export default defineComponent({
                 letter-spacing: 2px;
             }
 
-            button {
+            a {
                 font-family: "Montserrat", Sans-serif;
                 font-size: 13px;
                 font-weight: 600;
@@ -92,6 +93,8 @@ export default defineComponent({
                 margin-top: 24px;
                 cursor: pointer;
                 transition: background-color 0.5s, color 0.5s;
+                letter-spacing: 3.1px;
+                text-decoration: none;
 
                 &:hover {
                     background-color: var(--primary-light);

@@ -2,24 +2,24 @@
     <main id="home-about-me">
         <div class="triple-image-container">
             <div class="triple-image-container-img1">
-                <img src="https://jane.brandingmypurpose.com/wp-content/uploads/2022/06/pexels-jess-bailey-designs-1167051.jpeg" alt="">
+                <img src="../../assets/nora-us.jpg" alt="">
             </div>
 
             <div class="triple-image-container-img2">
-                <img src="https://jane.brandingmypurpose.com/wp-content/uploads/elementor/thumbs/pexels-teona-swift-6913737-scaled-1-prfuhnq1tpp9r3mhvmjxsukxit8rs8oiwrzbtkvsnc.jpeg" alt="">
+                <img src="../../assets/marigold.jpeg" alt="">
             </div>
 
             <div class="triple-image-container-img3">
-                <img src="https://jane.brandingmypurpose.com/wp-content/uploads/elementor/thumbs/tamara-bellis-GRfLA7aXlO4-unsplash-scaled-1-1366x2048-1-prfuh0832ut3oukmoue9kiieo6glft38hjo6tnumyw.jpeg" alt="">
+                <img src="../../assets/nora.jpg" alt="">
             </div>
         </div>
 
         <div class="triple-image-text">
             <h4>About Me</h4>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend a lorem eu commodo. Integer non turpis nibh. Praesent semper ligula at tellus finibus bibendum vitae at eros.</p>
+            <p>Hello! My name is Micayla Lyons, and I am a Christian, wife, mama to our sweet babies in heaven, and a mental health counselor. I love Jesus and my family abundantly, and am passionate about mental health advocacy, and now, pregnancy loss advocacy.</p>
 
-            <button>Find out more</button>
+            <a href="/about">Find out more</a>
         </div>
     </main>
 </template>
@@ -47,7 +47,7 @@ export default defineComponent({
             flex-direction: column;
             min-height: unset;
             padding: 0;
-            margin: 50px 0;
+            margin: 50px auto;
         }
 
         &:before {
@@ -141,6 +141,7 @@ export default defineComponent({
                 top: 220px;
                 left: 0;
                 z-index: 1;
+                min-height: 575px;
 
                 @media screen and (max-width: 768px) {
                     position: unset !important;
@@ -175,13 +176,12 @@ export default defineComponent({
 
             h4 {
                 color: var(--primary-light);
-                font-family: "MonteCarlo", Sans-serif;
+                font-family: "Montserrat", Sans-serif;
                 font-size: 61px;
-                font-weight: 400;
+                font-weight: 300;
                 line-height: 58px;
                 letter-spacing: 3.7px;
                 margin: 0;
-                font-weight: bold;
                 width: 100%;
             }
 
@@ -201,7 +201,7 @@ export default defineComponent({
                 }
             }
 
-            button {
+            a {
                 font-family: "Montserrat", Sans-serif;
                 font-size: 12px;
                 font-weight: 600;
@@ -215,6 +215,7 @@ export default defineComponent({
                 padding: 20px 40px;
                 cursor: pointer;
                 transition: background-color 0.25s;
+                text-decoration: none;
 
                 &:hover {
                     color: var(--white);

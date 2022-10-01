@@ -3,7 +3,7 @@
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
     <router-link to="/blog">Blog</router-link>
-    <router-link to="/store">Store</router-link>
+    <!-- <router-link to="/store">Store</router-link> -->
   </nav>
 
   <header>
@@ -19,11 +19,11 @@
       <div class="column">
         <h4>The Marigold Project</h4>
 
-        <p>Something stigma, something something</p>
+        <p>In honor of Nora Marjorie and Baby Bean</p>
       </div>
 
       <div class="column logo">
-        <img src="https://jane.brandingmypurpose.com/wp-content/uploads/2022/06/submark-150x150.png" alt="">
+        <img src="./assets/marigold-project-logo.png" alt="">
       </div>
 
       <div class="column">
@@ -62,12 +62,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: #FFEBD9;
+  background: rgb(240, 233, 232);
   margin: 0;
   padding: 0;
   position: relative;
 }
-
+// rgb(251, 241, 238);
 #app {
   overflow: hidden;
 }
@@ -147,6 +147,7 @@ footer {
   width: var(--width);
   margin: 0 auto;
   padding: 60px 0;
+  max-width: 1140px;
 
   &:before {
     content: " ";
@@ -230,18 +231,14 @@ footer {
       }
 
       @media screen and (max-width: 768px) {
-        width: 60%;
+        width: 100%;
       }
 
       &.logo {
+        img {
+          width: 100%;
+        }
         @media screen and (max-width: 768px) {
-          position: absolute;
-          justify-content: flex-start;
-          left: 0;
-
-          img {
-            width: 26.04vw;
-          }
         }
       }
     }

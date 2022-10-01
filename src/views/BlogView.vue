@@ -1,124 +1,195 @@
 <template>
-    <div class="blog">
-        <div class="blog-posts">
-            <div class="blog-posts-article">
-                <a href="/blog/32" class="blog-posts-article-title">Lorem Ipsum Title</a>
+    <Transition>
+        <div v-if="loading" class="loader">
+            <div class="clock-loader"></div>
+        </div>
 
-                <a class="blog-posts-article-meta">September 17, 2022</a>
-                <a class="blog-posts-article-meta">Leave a comment</a>
+        <div v-else class="blog">
+            <div class="blog-posts">
+                <div class="blog-posts-article" v-for="post, idx in posts" :key="idx+post">
+                    <a @click="redirect(post.slug)" class="blog-posts-article-title" v-html="post.title"></a>
 
-                <a href="/blog/32"><img class="blog-posts-article-featured" src="../assets/marigold_bg.jpg" alt=""></a>
+                    <a @click="redirectDate(post.date)" class="blog-posts-article-meta">{{ post.date }}</a>
+                    <a @click="redirect(post.slug, true)" class="blog-posts-article-meta">Leave a comment</a>
 
-                <p class="blog-posts-article-blurb">
-                    Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment. Party we years to order allow asked of. We so opinion friends me message as delight. Whole front do of plate heard
-                </p>
+                    <a @click="redirect(post.slug)"><img class="blog-posts-article-featured" :src="post.featured_image"
+                            alt=""></a>
 
-                <div class="blog-posts-article-links">
-                    <a href="/blog/32" class="blog-posts-article-links-href">
-                        Read more
-                    </a>
+                    <a @click="redirect(post.slug)" class="blog-posts-article-blurb" v-html="post.excerpt"></a>
 
-                    <div class="blog-posts-article-links-tags">
-                        <a href="">
-                            Perinatal Loss
-                        </a>
-                        <a href="">
-                            Mental Health
-                        </a>
+                    <div class="blog-posts-article-links">
+                        <a @click="redirect(post.slug)" class="blog-posts-article-links-href">Read more</a>
+
+                        <div class="blog-posts-article-links-tags">
+                            <a @click="redirectTags(tag.name)" v-for="tag, tagIdx in post.tags"
+                                :key="tag+tagIdx+'f'+idx">
+                                {{ tag.name }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="blog-posts-article">
-                <a class="blog-posts-article-title">Lorem Ipsum Title</a>
+            <div class="blog-sidebar">
+                <div class="blog-sidebar-category">
+                    <h3>Date</h3>
 
-                <a class="blog-posts-article-meta">September 17, 2022</a>
-                <a class="blog-posts-article-meta">Leave a comment</a>
-
-                <a><img class="blog-posts-article-featured" src="../assets/marigold_bg.jpg" alt=""></a>
-
-                <p class="blog-posts-article-blurb">
-                    Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment. Party we years to order allow asked of. We so opinion friends me message as delight. Whole front do of plate heard
-                </p>
-
-                <div class="blog-posts-article-links">
-                    <a href="" class="blog-posts-article-links-href">
-                        Read more
-                    </a>
-
-                    <div class="blog-posts-article-links-tags">
-                        <a href="">
-                            Perinatal Loss
-                        </a>
-                        <a href="">
-                            Mental Health
-                        </a>
-                    </div>
+                    <a @click="redirectDate(date)" v-for="date, dateIdx in dates" :key="date+dateIdx">{{ date }}</a>
                 </div>
-            </div>
 
-            <div class="blog-posts-article">
-                <a class="blog-posts-article-title">Lorem Ipsum Title</a>
+                <div class="blog-sidebar-category">
+                    <h3>Categories</h3>
 
-                <a class="blog-posts-article-meta">September 17, 2022</a>
-                <a class="blog-posts-article-meta">Leave a comment</a>
-
-                <a><img class="blog-posts-article-featured" src="../assets/marigold_bg.jpg" alt=""></a>
-
-                <p class="blog-posts-article-blurb">
-                    Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment. Party we years to order allow asked of. We so opinion friends me message as delight. Whole front do of plate heard
-                </p>
-
-                <div class="blog-posts-article-links">
-                    <a href="" class="blog-posts-article-links-href">
-                        Read more
-                    </a>
-
-                    <div class="blog-posts-article-links-tags">
-                        <a href="">
-                            Perinatal Loss
-                        </a>
-                        <a href="">
-                            Mental Health
-                        </a>
-                    </div>
+                    <a @click="redirectTags(tag)" v-for="tag, tagIdx in tags" :key="tag+tagIdx">{{ tag }}</a>
                 </div>
             </div>
         </div>
-
-        <div class="blog-sidebar">
-            <div class="blog-sidebar-category">
-                <h3>Date</h3>
-
-                <a href="">September 2020</a>
-                <a href="">October 2020</a>
-                <a href="">November 2020</a>
-                <a href="">December 2020</a>
-            </div>
-
-            <div class="blog-sidebar-category">
-                <h3>Categories</h3>
-
-                <a href="">Perinatal Loss</a>
-                <a href="">Infertility</a>
-                <a href="">Mental Health</a>
-            </div>
-        </div>
-    </div>
-  </template>
+    </Transition>
+</template>
   
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
+<script lang="ts">
+import router from '@/router';
+import { computed } from '@vue/reactivity';
+import { defineComponent, inject, ref } from 'vue';
+
+export default defineComponent({
     name: 'BlogView',
     components: {
     },
-  });
-  </script>
+    setup() {
+        const wp = inject('wp');
+        const loading = ref(true);
+        const allPosts = ref([] as any);
+
+        fetch(`${wp}/posts`)
+            .then(response => response.json())
+            .then(data => {
+                allPosts.value = data.posts.filter((post: any) => Object.keys(post.categories).includes('blog-post'))
+                loading.value = false;
+            });
+
+        const posts = computed(() => {
+            return allPosts.value.map((post: any) => {
+                post.date = new Date(post.date).toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' });
+                post.excerpt = post.excerpt.replaceAll('[', '').replaceAll(']', '');
+                post.featured_image = post.featured_image ? post.featured_image : "../assets/marigold_bg.jpg"
+                return post
+            });
+        });
+
+        const dates = computed(() => {
+            const postDates = new Set(allPosts.value.map((post: any) => {
+                const splitDate = post.date.split(' ');
+                return `${splitDate[0]} ${splitDate[2]}`;
+            }));
+
+            return postDates;
+        });
+
+        const tags = computed(() => {
+            return new Set(allPosts.value.map((post: any) => {
+                const tagsValues = Object.values(post.tags);
+
+                if (tagsValues) {
+                    return tagsValues.map((tag: any) => tag.name);
+                }
+            }).flat());
+        });
+
+        const redirect = (slug: string, commentSection = false) => {
+            router.push(`/blog/${slug}${commentSection ? '#comments' : ''}`);
+        }
+
+        const redirectDate = (date: string) => {
+            const toDate = new Date(date).toLocaleString('default', { month: 'long', year: 'numeric' });
+            router.push(`/blog/date/${toDate}`);
+        }
+
+        const redirectTags = (tag: string) => {
+            router.push(`/blog/categories/${tag}`);
+        }
+
+        return {
+            posts,
+            dates,
+            tags,
+            loading,
+
+            redirect,
+            redirectDate,
+            redirectTags
+        }
+    }
+});
+</script>
   
-  <style lang="scss" scoped>
-  .blog {
+<style lang="scss" scoped>
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.125s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100vw;
+    padding-top: 100px;
+
+    .clock-loader {
+        --clock-color: var(--primary);
+        --clock-width: 4rem;
+        --clock-radius: calc(var(--clock-width) / 2);
+        --clock-minute-length: calc(var(--clock-width) * 0.4);
+        --clock-hour-length: calc(var(--clock-width) * 0.2);
+        --clock-thickness: 0.2rem;
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: var(--clock-width);
+        height: var(--clock-width);
+        border: 2px solid var(--clock-color);
+        border-radius: 50%;
+
+        &::before,
+        &::after {
+            position: absolute;
+            content: "";
+            top: calc(var(--clock-radius) * 0.25);
+            width: var(--clock-thickness);
+            background: var(--clock-color);
+            border-radius: 10px;
+            transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
+            animation: spin infinite linear;
+        }
+
+        &::before {
+            height: var(--clock-minute-length);
+            animation-duration: 2s;
+        }
+
+        &::after {
+            top: calc(var(--clock-radius) * 0.25 + var(--clock-hour-length));
+            height: var(--clock-hour-length);
+            animation-duration: 15s;
+        }
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.blog {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -126,6 +197,10 @@
     width: var(--width);
     margin-bottom: 70px;
     margin-top: 40px;
+
+    a {
+        cursor: pointer;
+    }
 
     h2 {
         font-size: 64px;
@@ -193,10 +268,6 @@
                 }
             }
 
-            a {
-                cursor: pointer;
-            }
-
             &-featured {
                 width: 100%;
                 height: auto;
@@ -214,7 +285,7 @@
                 display: flex;
                 flex-wrap: wrap;
 
-                > a {
+                >a {
                     display: inline-flex;
                     font-family: "Montserrat", Sans-serif;
                     font-size: 11px;
@@ -321,6 +392,6 @@
             }
         }
     }
-  }
-  </style>
+}
+</style>
   
