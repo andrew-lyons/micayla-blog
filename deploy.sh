@@ -13,12 +13,11 @@ cd dist
 echo 'www.themarigoldproject.com' > CNAME
 
 git init
-git remote add origin https://github.com/andrew-lyons/micayla-blog
-git pull
-git fetch --all
-git checkout github-pages
 git add -A
 git commit -m 'deploy'
+git remote add origin https://github.com/andrew-lyons/micayla-blog
+git fetch --all
+git checkout github-pages
 git push
 
 cd -
