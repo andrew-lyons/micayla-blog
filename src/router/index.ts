@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import BlogPostView from '../views/BlogPostView.vue';
 
@@ -38,16 +38,17 @@ const routes: Array<RouteRecordRaw> = [
     name: 'blogdate',
     component: () => import('../views/BlogFilterView.vue'),
     props: true
-  }
+  },
   // {
   //   path: '/store',
   //   name: 'store',
   //   component: () => import('../views/StoreView.vue')
   // }
+  // { path: '/:pathMatch(.*)', name: 'bad-not-found', component: HomeView }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
   scrollBehavior() {
     document.getElementById('app')!.scrollIntoView();
